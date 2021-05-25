@@ -71,6 +71,7 @@ import (
 const DeniedKeyName = "Denied"
 
 // Ingress defines the valid annotations present in one NGINX Ingress rule
+// +k8s:deepcopy-gen=true
 type Ingress struct {
 	metav1.ObjectMeta
 	BackendProtocol      string

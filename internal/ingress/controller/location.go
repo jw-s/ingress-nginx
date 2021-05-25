@@ -20,10 +20,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mitchellh/copystructure"
 	networking "k8s.io/api/networking/v1beta1"
 	"k8s.io/ingress-nginx/internal/ingress"
-	"k8s.io/klog/v2"
 )
 
 var (
@@ -74,17 +72,12 @@ func updateServerLocations(locations []*ingress.Location) []*ingress.Location {
 		}
 
 		// copy location before any change
-		el, err := copystructure.Copy(location)
-		if err != nil {
-			klog.ErrorS(err, "copying location")
-		}
+		exactLocation := location.DeepCopy()
 
 		// normalize path. Must end in /
 		location.Path = normalizePrefixPath(location.Path)
 		newLocations = append(newLocations, location)
 
-		// add exact location
-		exactLocation := el.(*ingress.Location)
 		exactLocation.PathType = &pathTypeExact
 
 		newLocations = append(newLocations, exactLocation)

@@ -32,6 +32,7 @@ import (
 )
 
 // SourceRange returns the CIDR
+// +k8s:deepcopy-gen=true
 type SourceRange struct {
 	CIDR []string `json:"cidr,omitempty"`
 }

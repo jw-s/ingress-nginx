@@ -42,3 +42,15 @@ ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
   .:ingress \
   --output-base "$(dirname ${BASH_SOURCE})/../../.." \
   --go-header-file ${SCRIPT_ROOT}/hack/boilerplate/boilerplate.go.txt
+
+  ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
+  k8s.io/ingress-nginx/internal/ingress k8s.io/ingress-nginx/internal/ingress \
+  .:annotations \
+  --output-base "$(dirname ${BASH_SOURCE})/../../.." \
+  --go-header-file ${SCRIPT_ROOT}/hack/boilerplate/boilerplate.go.txt
+
+  ${CODEGEN_PKG}/generate-groups.sh "deepcopy" \
+  k8s.io/ingress-nginx/internal/ingress/annotations k8s.io/ingress-nginx/internal/ingress/annotations \
+  .:authreq,fastcgi,ipwhitelist,ratelimit \
+  --output-base "$(dirname ${BASH_SOURCE})/../../.." \
+  --go-header-file ${SCRIPT_ROOT}/hack/boilerplate/boilerplate.go.txt

@@ -34,6 +34,7 @@ type fastcgi struct {
 }
 
 // Config describes the per location fastcgi config
+// +k8s:deepcopy-gen=true
 type Config struct {
 	Index  string            `json:"index"`
 	Params map[string]string `json:"params"`

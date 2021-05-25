@@ -215,6 +215,7 @@ type Server struct {
 // - BasicDigestAuth
 // - ExternalAuth
 // - Redirect
+// +k8s:deepcopy-gen=true
 type Location struct {
 	// Path is an extended POSIX regex as defined by IEEE Std 1003.1,
 	// (i.e this follows the egrep/unix syntax, not the perl syntax)
@@ -382,6 +383,7 @@ type ProxyProtocol struct {
 }
 
 // Ingress holds the definition of an Ingress plus its annotations
+// +k8s:deepcopy-gen=true
 type Ingress struct {
 	networking.Ingress `json:"-"`
 	ParsedAnnotations  *annotations.Ingress `json:"parsedAnnotations"`

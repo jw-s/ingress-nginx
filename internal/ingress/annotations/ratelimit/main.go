@@ -43,6 +43,7 @@ const (
 // number of connections per IP address and/or connections per second.
 // If you both annotations are specified in a single Ingress rule, RPS limits
 // takes precedence
+// +k8s:deepcopy-gen=true
 type Config struct {
 	// Connections indicates a limit with the number of connections per IP address
 	Connections Zone `json:"connections"`
@@ -100,6 +101,7 @@ func (rt1 *Config) Equal(rt2 *Config) bool {
 
 // Zone returns information about the NGINX rate limit (limit_req_zone)
 // http://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_zone
+// +k8s:deepcopy-gen=true
 type Zone struct {
 	Name  string `json:"name"`
 	Limit int    `json:"limit"`
